@@ -16,7 +16,7 @@
           <div class="layout-header-nav">
             <MenuItem name="1" @click="logout">
               <Icon type="ios-person"></Icon>
-              <Span>Hi, This is Nicholas.</Span>
+              <Span>Hi, This is anonymous god.</Span>
             </MenuItem>
             <MenuItem name="3">
               <Icon style="visibility: hidden" type="ios-log-out"></Icon>
