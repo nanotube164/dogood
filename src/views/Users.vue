@@ -1,0 +1,43 @@
+<template>
+    <ul>
+        <li v-for="i in 5" :key="i">
+            <router-link :to="`/users/${i}`">/users/{{ i }}</router-link>
+        </li>
+    </ul>
+    <h1> UserID: {{ $route.params.userId }} </h1>
+    <pre>{{ userInfo }}</pre>
+</template>
+
+<script>
+
+export default {
+    name: 'Users',
+    data() {
+        return {
+            userInfo: {},
+        };
+    },
+    computed: {
+        userId() {
+            return this.$route.params.userId;
+        }
+    },
+    watch: {
+        userId: async function (val) {
+            this.userInfo = await this.fetchUserInfo(val);
+        }
+    },
+    methods: {
+        // 非同步的函式
+        async fetchUserInfo(id) {
+            return await fetch("https://jsonplaceholder.typicode.com/users/" + id)
+            .then((response) => response.json())
+            .then((json) => json);
+        }
+    },
+    async created() {
+        this.userInfo = await this.fetchUserInfo(this.userId);
+    }
+}
+
+</script>
